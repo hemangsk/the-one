@@ -11,7 +11,9 @@ import core.Settings;
  * connections at a time.
  */
 public class CustomEpidemicRouter extends ActiveRouter {
-
+	public static final String CE_NS = "CERouter";
+	public static final String THRESHOLD_ENERGY ="thresholdEnergy";
+	public static int thresholdEnergy;
 	/**
 	 * Constructor. Creates a new message router based on the settings in
 	 * the given Settings object.
@@ -19,6 +21,8 @@ public class CustomEpidemicRouter extends ActiveRouter {
 	 */
 	public CustomEpidemicRouter(Settings s) {
 		super(s);
+		Settings ceSettings = new Settings(CE_NS);
+		thresholdEnergy = ceSettings.getInt(THRESHOLD_ENERGY);
 		//TODO: read&use epidemic router specific settings (if any)
 	}
 
@@ -43,11 +47,10 @@ public class CustomEpidemicRouter extends ActiveRouter {
 			return; // started a transfer, don't try others (yet)
 		}
 				
-		if(getFreeBufferSize() <= 0) {
-			System.out.println("Full Buffer");
+		if (! hasSufficientEnergy()) {
 			return;
 		}
-
+		
 		// then try any/all message to any/all connection
 		this.tryAllMessagesToAllConnections();
 	}
@@ -56,6 +59,20 @@ public class CustomEpidemicRouter extends ActiveRouter {
 	@Override
 	public CustomEpidemicRouter replicate() {
 		return new CustomEpidemicRouter(this);
+	}
+	
+	public boolean hasSufficientEnergy() {
+		if (this.hasEnergy()) {
+			
+			if (this.getEnergy().getEnergy() < thresholdEnergy) {
+				System.out.println("Insufficient Energy! Value = " + this.getEnergy().getEnergy());
+				return false;
+			} else {
+				System.out.println("Sufficient Energy! Value = " + this.getEnergy().getEnergy());
+				return true;
+			}
+		} 
+		return false;
 	}
 
 }

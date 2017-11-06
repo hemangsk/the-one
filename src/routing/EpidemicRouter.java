@@ -42,7 +42,7 @@ public class EpidemicRouter extends ActiveRouter {
 		if (exchangeDeliverableMessages() != null) {
 			return; // started a transfer, don't try others (yet)
 		}
-
+		
 		// then try any/all message to any/all connection
 		this.tryAllMessagesToAllConnections();
 	}

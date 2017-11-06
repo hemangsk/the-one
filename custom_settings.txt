@@ -53,8 +53,12 @@ Scenario.nrofHostGroups = 6
 # Common settings for all groups
 Group.movementModel = ShortestPathMapBasedMovement
 Group.router = CustomEpidemicRouter
-Group.bufferSize = 600k
+Group.bufferSize = 2M
 Group.waitTime = 0, 120
+Group.initialEnergy = 10000
+Group.scanEnergy = 2
+Group.scanResponseEnergy = 3
+Group.transmitEnergy = 5
 # All nodes have the bluetooth interface
 Group.nrofInterfaces = 1
 Group.interface1 = btInterface
@@ -67,9 +71,12 @@ Group.nrofHosts = 40
 
 # group1 (pedestrians) specific settings
 Group1.groupID = p
+Group1.initialEnergy = 1000
 
 # group2 specific settings
 Group2.groupID = c
+Group2.initialEnergy = 5000
+
 # cars can drive only on roads
 Group2.okMaps = 1
 # 10-50 km/h
@@ -77,6 +84,7 @@ Group2.speed = 2.7, 13.9
 
 # another group of pedestrians
 Group3.groupID = w
+Group3.initialEnergy = 1000
 
 # The Tram groups
 Group4.groupID = t
@@ -90,6 +98,8 @@ Group4.nrofHosts = 2
 Group4.nrofInterfaces = 2
 Group4.interface1 = btInterface
 Group4.interface2 = highspeedInterface
+Group4.initialEnergy = 100000
+
 
 Group5.groupID = t
 Group5.bufferSize = 2M
@@ -99,6 +109,7 @@ Group5.routeType = 2
 Group5.waitTime = 10, 30
 Group5.speed = 7, 10
 Group5.nrofHosts = 2
+Group5.initialEnergy = 50000
 
 Group6.groupID = t
 Group6.bufferSize = 1M
@@ -156,8 +167,11 @@ Report.report2 = ContactTimesReport
 
 ## Default settings for some routers settings
 ProphetRouter.secondsInTimeUnit = 30
+CustomEpidemicRouter.secondsInTimeUnit = 30
 SprayAndWaitRouter.nrofCopies = 6
 SprayAndWaitRouter.binaryMode = true
+CERouter.thresholdEnergy = 300
+
 
 ## Optimization settings -- these affect the speed of the simulation
 ## see World class for details.
