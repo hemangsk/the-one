@@ -11,6 +11,7 @@ import routing.MessageRouter;
  */
 public abstract class Connection {
 	protected DTNHost toNode;
+	public static DTNHost toNode1;   		//added by prachi
 	protected NetworkInterface toInterface;
 	protected DTNHost fromNode;
 	protected NetworkInterface fromInterface;
@@ -34,12 +35,29 @@ public abstract class Connection {
 		this.fromNode = fromNode;
 		this.fromInterface = fromInterface;
 		this.toNode = toNode;
+		toNode1 = toNode;				//added by prachi
 		this.toInterface = toInterface;
 		this.isUp = true;
 		this.bytesTransferred = 0;
 	}
 
-
+	/*
+	 * 	public DTNHost getOtherNode(DTNHost node) {
+		if (node == this.fromNode) {
+			return this.toNode;
+		}
+		else {
+			return this.fromNode;
+		}
+	}
+	 */
+	
+	
+	public static DTNHost getOtherNode1(DTNHost node)			//added by prachi
+	{															//added by prachi
+		return toNode1;											//added by prachi
+	}															//added by prachi
+	
 	/**
 	 * Returns true if the connection is up
 	 * @return state of the connection
@@ -227,4 +245,3 @@ public abstract class Connection {
 	}
 
 }
-

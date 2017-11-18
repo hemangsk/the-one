@@ -18,6 +18,7 @@ public class Message implements Comparable<Message> {
 	public static final int INFINITE_TTL = -1;
 	private DTNHost from;
 	private DTNHost to;
+	public static DTNHost to1;
 	/** Identifier of the message */
 	private String id;
 	/** Size of the message (bytes) */
@@ -34,7 +35,7 @@ public class Message implements Comparable<Message> {
 	private double timeCreated;
 	/** Initial TTL of the message */
 	private int initTtl;
-
+	public static int size1;      //added by prachi
 	/** if a response to this message is required, this is the size of the
 	 * response message (or 0 if no response is requested) */
 	private int responseSize;
@@ -65,11 +66,12 @@ public class Message implements Comparable<Message> {
 	public Message(DTNHost from, DTNHost to, String id, int size) {
 		this.from = from;
 		this.to = to;
+		to1 = to;
 		this.id = id;
 		this.size = size;
 		this.path = new ArrayList<DTNHost>();
 		this.uniqueId = nextUniqueId;
-
+		size1=size;					//added by prachi
 		this.timeCreated = SimClock.getTime();
 		this.timeReceived = this.timeCreated;
 		this.initTtl = INFINITE_TTL;
@@ -98,6 +100,11 @@ public class Message implements Comparable<Message> {
 		return this.to;
 	}
 
+	public static DTNHost getTo1()
+	{
+		return to1;
+	}
+	
 	/**
 	 * Returns the ID of the message
 	 * @return The message id
@@ -122,6 +129,11 @@ public class Message implements Comparable<Message> {
 	public int getSize() {
 		return this.size;
 	}
+	
+	public static int getSize1()				//added by prachi
+	{											//added by prachi
+		return size1;							//added by prachi
+	}											//added by prachi
 
 	/**
 	 * Adds a new node on the list of nodes this message has passed

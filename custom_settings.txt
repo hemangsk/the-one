@@ -59,6 +59,7 @@ Group.initialEnergy = 10000
 Group.scanEnergy = 2
 Group.scanResponseEnergy = 3
 Group.transmitEnergy = 5
+
 # All nodes have the bluetooth interface
 Group.nrofInterfaces = 1
 Group.interface1 = btInterface
@@ -76,7 +77,6 @@ Group1.initialEnergy = 1000
 # group2 specific settings
 Group2.groupID = c
 Group2.initialEnergy = 5000
-
 # cars can drive only on roads
 Group2.okMaps = 1
 # 10-50 km/h
@@ -88,7 +88,7 @@ Group3.initialEnergy = 1000
 
 # The Tram groups
 Group4.groupID = t
-Group4.bufferSize = 2M
+Group4.bufferSize = 50M
 Group4.movementModel = MapRouteMovement
 Group4.routeFile = data/tram3.wkt
 Group4.routeType = 1
@@ -99,7 +99,6 @@ Group4.nrofInterfaces = 2
 Group4.interface1 = btInterface
 Group4.interface2 = highspeedInterface
 Group4.initialEnergy = 100000
-
 
 Group5.groupID = t
 Group5.bufferSize = 2M
@@ -112,7 +111,7 @@ Group5.nrofHosts = 2
 Group5.initialEnergy = 50000
 
 Group6.groupID = t
-Group6.bufferSize = 1M
+Group6.bufferSize = 50M
 Group6.movementModel = MapRouteMovement
 Group6.routeFile = data/tram10.wkt
 Group6.routeType = 2
@@ -171,7 +170,8 @@ CustomEpidemicRouter.secondsInTimeUnit = 30
 SprayAndWaitRouter.nrofCopies = 6
 SprayAndWaitRouter.binaryMode = true
 CERouter.thresholdEnergy = 300
-
+CERouter.thresholdProbability = 0.0000000000000001
+CERouter.secondsInTimeUnit = 2
 
 ## Optimization settings -- these affect the speed of the simulation
 ## see World class for details.
